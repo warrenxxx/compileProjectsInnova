@@ -1,0 +1,118 @@
+{
+  "aggregate": "__collection__",
+  "pipeline": [
+    {
+      "$match": {
+        "_id": {
+          "$oid": "5af2378574ae064ef0d5d288"
+        }
+      }
+    },
+    {
+      "$replaceRoot": {
+        "newRoot": "$account"
+      }
+    },
+    {
+      "$unwind": {
+        "path": "$roles",
+        "preserveNullAndEmptyArrays": true
+      }
+    },
+    {
+      "$lookup": {
+        "from": "role",
+        "localField": "roles",
+        "foreignField": "name",
+        "as": "roles"
+      }
+    },
+    {
+      "$unwind": {
+        "path": "$roles",
+        "preserveNullAndEmptyArrays": true
+      }
+    },
+    {
+      "$unwind": {
+        "path": "$roles.functions",
+        "preserveNullAndEmptyArrays": true
+      }
+    },
+    {
+      "$group": {
+        "_id": null,
+        "functions": {
+          "$first": "$functions"
+        },
+        "roles": {
+          "$push": "$roles.functions"
+        }
+      }
+    },
+    {
+      "$project": {
+        "functions": {
+          "$concatArrays": [
+            "$roles",
+            "$functions"
+          ]
+        }
+      }
+    },
+    {
+      "$unwind": {
+        "path": "$functions",
+        "preserveNullAndEmptyArrays": true
+      }
+    },
+    {
+      "$replaceRoot": {
+        "newRoot": "$functions"
+      }
+    },
+    {
+      "$unwind": "$crudMethods"
+    },
+    {
+      "$project": {
+        "service": 1,
+        "name": {
+          "$substr": [
+            "$crudMethods.name",
+            0,
+            2
+          ]
+        },
+        "possesion": {
+          "$substr": [
+            "$crudMethods.possesion",
+            0,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "$project": {
+        "functions": {
+          "$concat": [
+            "$service",
+            "-",
+            "$name",
+            "-",
+            "$possesion"
+          ]
+        }
+      }
+    },
+    {
+      "$group": {
+        "_id": null,
+        "functions": {
+          "$push": "$functions"
+        }
+      }
+    }
+  ]
+}
