@@ -1,6 +1,8 @@
 C:\Users\warre\Documents\bitbucket\authentication_manage\src\main\java\innovar\io\authentication_manage\config\variableRole.java
 C:\Users\warre\Documents\bitbucket\authentication_manage\src\main\java\innovar\io\authentication_manage\controller\LoginController.java
+C:\Users\warre\Documents\bitbucket\authentication_manage\src\main\java\innovar\io\authentication_manage\dto\RequestExsistentUserDto.java
 C:\Users\warre\Documents\bitbucket\authentication_manage\src\main\java\innovar\io\authentication_manage\repository\AuthenticateDaoMongoImp.java
+C:\Users\warre\Documents\bitbucket\authentication_manage\src\main\java\innovar\io\authentication_manage\dto\ResponseNameUserDto.java
 C:\Users\warre\Documents\bitbucket\authentication_manage\src\main\java\innovar\io\authentication_manage\dto\LoginDto.java
 C:\Users\warre\Documents\bitbucket\authentication_manage\src\main\java\innovar\io\authentication_manage\config\VariablesMeasureUnitCategor.java
 C:\Users\warre\Documents\bitbucket\authentication_manage\src\main\java\innovar\io\authentication_manage\AuthenticationManageApplication.java
